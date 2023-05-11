@@ -1,0 +1,183 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+}
+
+body {
+  background: #1f1f47;
+  }
+  
+  .container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .box {
+    width: 90%;
+    max-width: 600px;
+    height: 400px;
+    overflow-y: scroll;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-left: 2rem; /* Add margin to the left side */
+  }
+    
+  .card-container {
+    width: 90%;
+    max-width: 600px;
+    margin-top: 40px; /* Add margin on top */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  .chatbox-container {
+    width: 500px; /* Adjust the width as needed */
+    height: calc(100vh - 20px); /* Adjust the height and consider any necessary margins */
+    background: #fff;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 1rem;
+    margin-left: 20px; /* Add margin to create space between the box and chatbox */
+    padding: 1rem;
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+ 
+  .card {
+  width: 90%;
+  max-width: 600px;
+  min-height: 250px;
+  background: rgba(47, 45, 45, 1.101);
+  box-shadow: 0 8px 32px 0 rgba(18, 22, 80, 1.87);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  z-index: 10;
+  color: whitesmoke;
+  margin-bottom: 1rem;
+  }
+  
+  .title {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  }
+  
+  .subtitle {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  }
+  
+  .btn {
+  background: none;
+  border: none;
+  text-align: center;
+  font-size: 1rem;
+  color: whitesmoke;
+  background-color: #31c2dc;
+  padding: 0.8rem 1.8rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  }
+  
+  .blob {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(180deg, rgba(47, 184, 255, 0.42) 31.77%, #5c9df1 100%);
+  mix-blend-mode: color-dodge;
+  animation: move 25s infinite alternate;
+  transition: 1s cubic-bezier(0.07, 0.8, 0.16, 1);
+  }
+  
+  .blob:hover {
+  width: 520px;
+  height: 520px;
+  filter: blur(30px);
+  box-shadow: inset 0 0 0 5px rgba(44, 161, 233, 0.6), inset 100px 100px 0 0px #49e363, inset 200px 200px 0 0px #dde01d,
+  inset 300px 300px 0 0px #2b86c5;
+  }
+
+@keyframes move {
+  from {
+    transform: translate(-100px, -50px) rotate(-90deg);
+    border-radius: 24% 76% 35% 65% / 27% 36% 64% 73%;
+  }
+
+  to {
+    transform: translate(500px, 100px) rotate(-10deg);
+    border-radius: 76% 24% 33% 67% / 68% 55% 45% 32%;
+  }
+}
+
+/* Remove the existing .chatbox styles */
+.chatbox {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.chatbox-messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.chatbox-message {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.user-message,
+.bot-message {
+  display: inline-block;
+  max-width: 80%;
+  padding: 10px;
+  border-radius: 20px;
+  word-wrap: break-word;
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: #1e90ff;
+  color: white;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.bot-message {
+  align-self: flex-start;
+  background-color: #f2f2f2;
+  color: #333;
+  margin-left: 10px;
+  margin-right: auto;
+}
+
+.chatbox-input {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.chatbox-input input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.chatbox-input button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
