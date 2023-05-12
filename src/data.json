@@ -1,0 +1,81 @@
+{
+    "data": [
+      {
+        "question": "today morning we face an issue with app token being expired as per this link",
+        "answer": "You can create a new Token by going to Settings → PLuG setup → Public Application Access token. We have a  1,3 and 5 year validity on the new token."
+      },
+      {
+        "question": "Do issues get autosynced from github to the respective runnable where we provided the url?",
+        "answer": "What it does do is we auto-create issues for you (such as when you open a PR without an issue ID), it will assign it to that runnable part."
+      },
+      {
+        "question": "my understanding is the sync is one way github->devrev and doesn't happen the other way arounnd is that understanding correct?",
+        "answer": "Yes, at the moment it is one way. Do you use GitHub to let your customers open issues? Otherwise, the intended usage for the import was to start using DevRev for issue management."
+      },
+      {
+        "question": "Do you sync with GitHub issues or only Jira?",
+        "answer"  :  "We sync 2 ways with Jira and one way with Github issues. (Github → DevRev)"  
+    },
+    {
+        "question":"What integrations do you have? ",
+        "answer":"Yes, you can find our available integrations in the DevRev Marketplace.  If you don’t see something you are looking for, let us know it might be coming soon. "
+    },
+    {
+        "question":"do you guys have a mobile client to look and respond to tickets/queries?",
+        "answer":"Our app is responsive and available on your mobile web browser. We are actively working on releasing native Android and iOS apps. "
+    },
+    {
+        "question":"need help to install the plug on my app.",
+        "answer":"Check out the PLuG installation instructions here https://devrev.ai/docs/integrations/plug"
+    },
+    {
+        "question":"What can I do with Devrev Slack integration?",
+        "answer":"With the Slack snap-in you can- Sync your Slack conversations with the DevRev inbox. Let your customers create conversations from Slack. Create DevRev tickets without leaving Slack. Share and view work details. Receive DevRev Slack notifications"
+    },
+    {
+        "question":"What is a ticket?  OR What is a ticket in DevRev? ",
+        "answer":"A ticket is a record of a customer's request for assistance on a problem or information about the product. It is owned by a customer support person and describes the issue they are experiencing, and any actions taken to resolve it. A ticket could be a query, bug, feature request or general request. "
+    },
+    {
+        "question":"i would like an email integration",
+        "answer":"You can send  DMARC-compliant emails through the DevRev app. Configure your email provider to forward emails from your support email address to @hooks.devrev.ai. Whether it is Gmail, Microsoft Outlook, or any other email provider, this integration works."
+    },
+    {
+        "question":"What is airdrop?",
+        "answer":"Migrate and bi-directionally sync data across systems.Connect DevRev across legacy applications to start building, supporting, and growing as One."
+    },
+    {
+        "question":"What is DevRev? ",
+        "answer":"DevRev has brought the voice of the customer from the front office and connected it with your product on one end and social, real-time work management on the other. You can improve your customer experience and team productivity by converging your front office (sales, customer success & support) with your back office (product management, engineering and design). More details here https://devrev.ai/docs"
+    },
+    {
+        "question":"What is Dev CRM ? ",
+        "answer":"DevCRM stands for Developer Customer Relationship Management. It is a type of CRM (Customer Relationship Management) system that is designed specifically for software development companies to manage their relationships with their customers.By keeping all customer and product information in one place, DevCRM tools can help developers to better manage their workflow and make data-driven decisions to grow their business."
+    },
+    {
+        "question":"What is triage?",
+        "answer":"Triage is a process to prioritize the work items (tickets or issues) based on severity, risk, frequency of occurrence. The work items could be bugs or feature requests by the customers. Triaging is a team work and usually happens between stakeholders like Customer success, support, product managers and engineering leads."
+    },
+    {
+        "question":"What is a feature?",
+        "answer":"A thing that your product does, which should contribute to solving the overall problem the product is trying to solve. It is an individual experience or element of functionality.Features are the smallest unit of entitlement (user) or deployment (developer, DevOps) that can be switched on or off, based on which tier the user is licensed to use, or which feature flag has been toggled in the production cloud. Features comprise sub-features and APIs."
+    },
+    {
+        "question":"what is the difference between a issue and ticket?",
+        "answer":"A ticket is a record of a customer's request for assistance or support.When a customer contacts a company with a problem or issue, the company creates a ticket to track the request and ensure that it is addressed in a timely and satisfactory manner. Also known as a customer ticket or support ticket. An issue is a work item created by a dev which helps to make the product better , cater to a customer request or fix a bug. Issues usually require a code change and go through the software development lifecycle."
+    },
+    {
+        "question":"What is Dev?",
+        "answer":"A DevRev user who develops, builds, or provides products or services to a customer (rev)."
+    },
+    {
+        "question":"What is Inbox?",
+        "answer":"Inbox is your one stop shop for all conversations from your customers through different channels like PLuG, Slack and Email."
+    },
+    {
+        "question":"What is Rev?",
+        "answer":"The customer of a product or service developed, built, or provided by a developer (dev)."
+    }
+    ]
+  }
+  
