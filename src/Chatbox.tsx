@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import data from './data.json'
+import stringSimilarity from 'string-similarity';
 
 interface ChatboxProps {
   chatInput: string;
@@ -60,16 +62,28 @@ const Chatbox: React.FC<ChatboxProps> = ({ chatInput, onChatInputChange, onChatb
           response = 'Login to your org and go to "Settings". Under the support category, you will find "Articles". Click the button and upload articles or add links. You can also copy paste this link to do it - `https://app.devrev.ai/org-slug/settings/articles`. Replace `org-slug` with your org slug.';
             break;
       default:
-        response = "I'm sorry, I don't understand.";
-        break;
-    }
+        const matchedQuestion = data.find((item: { question: string }) =>
+        item.question.toLowerCase() === userInput.toLowerCase()
+      );
 
-    return response;
-  };
+      if (matchedQuestion) {
+        response = matchedQuestion.answer;
+      } else {
+        const allQuestions = data.map((item) => item.question);
+        const matches = stringSimilarity.findBestMatch(userInput, allQuestions);
+        const bestMatchIndex = matches.bestMatchIndex;
+        response = data[bestMatchIndex].answer || "I'm sorry, I don't understand.";
+      }
+  }
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-  };
+  return response;
+};
+
+const scrollToBottom = () => {
+  if (messagesEndRef.current) {
+    messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }
+};
 
   const renderMessageContent = (content: string) => {
     const urlRegex = /(&lt;a href="[^"]*"&gt;[^<]*<\/a&gt;)/g;

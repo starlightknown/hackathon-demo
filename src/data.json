@@ -1,5 +1,4 @@
-{
-    "data": [
+   [
       {
         "question": "today morning we face an issue with app token being expired as per this link",
         "answer": "You can create a new Token by going to Settings → PLuG setup → Public Application Access token. We have a  1,3 and 5 year validity on the new token."
@@ -77,5 +76,3 @@
         "answer":"The customer of a product or service developed, built, or provided by a developer (dev)."
     }
     ]
-  }
-  

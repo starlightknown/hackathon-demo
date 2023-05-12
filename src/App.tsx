@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
 import Chatbox from './Chatbox';
-import logo from './logo.png'; // Update the path if necessary
-import { FaEnvelope, FaSlack, FaRobot, FaHandshake, FaTicketAlt } from 'react-icons/fa';
+import logo from './logo.png';
+import { FaEnvelope, FaSlack, FaRobot, FaHandshake, FaTicketAlt, FaCheck } from 'react-icons/fa';
 
 const App: React.FC = () => {
   const [chatInput, setChatInput] = useState('');
+  const [clickedLinks, setClickedLinks] = useState<number[]>([]);
 
   const handleChatInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChatInput(event.target.value);
@@ -31,65 +32,122 @@ const App: React.FC = () => {
     handleChatboxSubmit('How to upload articles?');
   };
 
+  const handleLinkClick = (cardIndex: number, linkIndex: number) => {
+    setClickedLinks((prevClickedLinks) => {
+      const updatedLinks = [...prevClickedLinks];
+      updatedLinks[cardIndex] = linkIndex;
+      return updatedLinks;
+    });
+  };
+
+  const isCardFullyClicked = (cardIndex: number) => {
+    const card = data[cardIndex];
+    const cardLinks = card.links;
+    const clickedLinksForCard = clickedLinks
+      .map((linkIndex, index) => (index === cardIndex ? linkIndex : undefined))
+      .filter((linkIndex) => linkIndex !== undefined) as number[];
+
+    const uniqueClickedLinks = clickedLinksForCard.filter(
+      (value, index, self) => self.indexOf(value) === index
+    );
+
+    return uniqueClickedLinks.length === cardLinks.length;
+  };
+
+  const data = [
+    {
+      title: 'Customer Conversations',
+      subtitle: 'Bring all your customer conversations at one place. Connect email or Slack. Click on Connect Conversations to know more.',
+      links: [
+        {
+          index: 0,
+          label: <FaSlack size={30} />,
+          url: 'https://devrev.ai/marketplace/slack',
+        },
+        {
+          index: 1,
+          label: <FaEnvelope size={30} />,
+          url: 'https://devrev.ai/marketplace/devrev-plug-with-email',
+        },
+      ],
+      buttonText: 'Connect Conversations',
+      onClick: handleConversations,
+    },
+    {
+      title: 'Convos to Tickets',
+      subtitle: 'Sometimes conversations are not everything, trace your conversations and turn them into tickets by using Slack and PLuG widget.',
+      links: [
+        {
+          index: 0,
+          label: <FaTicketAlt size={30} />,
+          url: 'https://devrev.ai/docs/product/plug',
+        },
+      ],
+      buttonText: 'Set up tickets',
+      onClick: handleTickets,
+    },
+    {
+      title: 'Auto Responses and AI for Deflection',
+      subtitle: 'Answer common questions by GPT-powered customer responses. Set up auto response based on your team availability.',
+      links: [
+        {
+          index: 0,
+          label: <FaRobot size={30} />,
+          url: 'https://devrev.ai/marketplace/article-suggestion',
+        },
+        {
+          index: 1,
+          label: <FaHandshake size={30} />,
+          url: 'https://devrev.ai/marketplace/auto-reply',
+        },
+      ],
+      buttonText: 'Configure Responses and Deflection',
+      onClick: handleDeflection,
+    },
+    {
+      title: 'Self Service',
+      subtitle: 'Got articles on your product which can give answers? Upload them and allow users to search through documentation via PLuG.',
+      links: [{
+        index: 0,
+        label: <FaRobot size={30} />,
+        url: 'https://devrev.ai/marketplace/article-suggestion',
+      }],
+      buttonText: 'Upload Articles',
+      onClick: handleService,
+    },
+  ];
+
   return (
     <div className="page">
       <div className="container">
         <div className="box">
-        <div className="card">
-  <div className="card-logo">
-  <FaSlack size={30} /> <FaEnvelope size={30}/>
-  </div>
-  <h1 className="title">Customer Conversations</h1>
-  <p className="subtitle">
-    Bring all your customer conversations at one place. Connect email or Slack. Click on Connect Conversations to know more.
-  </p>
-  <button className="btn" onClick={handleConversations}>
-    Connect Conversations
-  </button>
-</div>
-<div className="card">
-  <div className="card-logo">
-  <FaTicketAlt size={30}/>
-  </div>
-  <h1 className="title">Convos to Tickets</h1>
-  <p className="subtitle">
-    Sometimes conversations are not everything, trace your conversations and turn them into tickets by using Slack and PLuG widget.
-  </p>
-  <button className="btn" onClick={handleTickets}>
-    Set up tickets
-  </button>
-</div>
-<div className="card">
-  <div className="card-logo">
-    <FaRobot size={30}/>
-  </div>
-  <h1 className="title">Auto Responses and AI for Deflection</h1>
-  <p className="subtitle">
-    Answer common questions by GPT-powered customer responses. Set up auto response based on your team availability.
-  </p>
-  <button className="btn" onClick={handleDeflection}>
-    Configure Responses and Deflection
-  </button>
-</div>
-<div className="card">
-  <div className="card-logo">
-    <FaHandshake size={30}/>
-  </div>
-  <h1 className="title">Self Service</h1>
-  <p className="subtitle">
-    Got articles on your product which can give answers? Upload them and allow users to search through documentation via PLuG.
-  </p>
-  <button className="btn" onClick={handleService}>
-    Upload Articles
-  </button>
-</div>
-
-          {/* Add more cards as needed */}
+          {data.map((card, cardIndex) => (
+            <div className="card" key={cardIndex}>
+              <div className="card-logo">
+                {card.links.map((link, linkIndex) => (
+                  <a
+                    key={linkIndex}
+                    href={link.url}
+                    onClick={() => handleLinkClick(cardIndex, linkIndex)}
+                    className={clickedLinks[cardIndex] === linkIndex ? 'clicked' : ''}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+              <h1 className="title">{card.title}</h1>
+              <p className="subtitle">{card.subtitle}</p>
+              <button className="btn" onClick={card.onClick}>
+                {card.buttonText}
+              </button>
+              {isCardFullyClicked(cardIndex) && <FaCheck className="tick" />}
+            </div>
+          ))}
         </div>
         <div className="chatbox-container">
-        <div className="logo-container">
-  <img src={logo} alt="Logo" className="logo-image" />
-</div>
+          <div className="logo-container">
+            <img src={logo} alt="Logo" className="logo-image" />
+          </div>
           <Chatbox
             chatInput={chatInput}
             onChatboxSubmit={handleChatboxSubmit}

@@ -21,7 +21,10 @@ body {
   padding: 2rem;
   box-sizing: border-box;
 }
-
+.card-logo a{
+  text-decoration: none;
+  color: inherit;
+}
 .box {
   width: 90%;
   max-width: 600px;
